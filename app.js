@@ -1,6 +1,7 @@
 const enterBtn = document.getElementById('enter')
 const displayItems = document.querySelector('.to-do-list')
 const editBtn = document.querySelectorAll('.editBtn')
+const clearBtn = document.querySelector('.clear-btn')
 const sortBtn = document.querySelector('.sort')
 const dateSection = document.getElementById('date')
 const error = document.querySelector('.error')
@@ -14,6 +15,10 @@ enterBtn.addEventListener('click', () => {
     createItem(item)
 })
 
+clearBtn.addEventListener('click', () => {
+    localStorage.clear()
+    document.querySelectorAll('.item').forEach(e => e.remove())
+})
 // create todo
 function createItem(item) {
     if (item.value.trim() === ''){
@@ -161,3 +166,11 @@ function init() {
     itemsArray.forEach(displayTodos)
     // console.log("Loaded array" , itemsArray)
 }
+
+
+
+
+
+
+
+// ADD Clear notes button
