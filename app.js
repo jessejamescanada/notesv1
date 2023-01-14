@@ -23,13 +23,13 @@ function createItem(item) {
         }, 2000);
     }else{
         const notes = {
-            id: '1',
-            text : item.value
+            text: item.value,
+            id: '1'
         }
         itemsArray.push(notes)
     }
  
-    console.log(itemsArray)
+    // console.log(itemsArray)
     localStorage.setItem('items', JSON.stringify(itemsArray))
     displayTodos()
     item.value = ''
@@ -72,7 +72,7 @@ sortBtn.addEventListener('click', sortItems)
 function sortItems(e){
     e.preventDefault()
     itemsArray.sort((a, b) => parseFloat(b.id) - parseFloat(a.id))
-    console.log(itemsArray)
+    // console.log(itemsArray)
     localStorage.setItem('items', JSON.stringify(itemsArray))
     displayTodos()
 }
@@ -87,7 +87,7 @@ function radioBtns(){
             itemsArray[i].id = buttons
             localStorage.setItem('items', JSON.stringify(itemsArray))
         })
-        console.log(itemsArray) 
+        // console.log(itemsArray) 
     })
 }
 
@@ -137,10 +137,12 @@ function activateSaveBtn() {
     })
 }
 
+// when saving an EDIT, had to set itemsArray[i].text to access text property ONLY of object
 function updateItem(text, i){
-    itemsArray[i] = text
+    itemsArray[i].text = text
     localStorage.setItem('items', JSON.stringify(itemsArray))
     init()
+    // console.log(itemsArray)
 }
 
 function displayDate() {
@@ -154,9 +156,8 @@ function displayDate() {
 init()
 // initialize
 function init() {
-    // displayItems.innerHTML = ''
     displayTodos()
     displayDate()
     itemsArray.forEach(displayTodos)
-    console.log("Loaded array" , itemsArray)
+    // console.log("Loaded array" , itemsArray)
 }
