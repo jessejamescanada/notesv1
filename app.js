@@ -47,11 +47,11 @@ function displayTodos() {
             <div class="update-controller">
                 <button class="saveBtn">Save</button>
                     <div class="radio">
-                        <label for="priority">low</label>
+                        <label for="priority">Low</label>
                         <input type="radio" name="priority" value="1" onClick="radioBtns()">
-                        <label for="priority">med</label>
+                        <label for="priority">Med</label>
                         <input type="radio" name="priority" value="2"onClick="radioBtns()">
-                        <label for="priority">high</label>
+                        <label for="priority">High</label>
                         <input type="radio" name="priority" value="3"onClick="radioBtns()">
                     </div>
                 <i class="fas fa-trash deleteBtn"></i>
