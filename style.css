@@ -232,9 +232,15 @@ input:focus::placeholder {
 }
 
  .item{
-    /* position: relative; */
+    position: relative;
     margin: 15px;
-    
+}
+.date{
+    position: absolute;
+    bottom: 30%;
+    right: 3%;
+    font-family: "Indie Flower";
+    font-weight: 800;
 }
 
 .update-controller{
@@ -268,12 +274,10 @@ input:focus::placeholder {
         margin-top: 5px;
     }
     .sort{
-        padding: .2rem .8rem;
-        margin-bottom: 10px;
+        padding: 3px 22px;
     }
     #enter{
-        padding: .2rem 1rem;
-        margin-bottom: 10px;
+        padding: 10px 20px;
     }
     .to-do-input{
         flex-direction: column;

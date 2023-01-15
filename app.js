@@ -29,14 +29,21 @@ function createItem(item) {
     }else{
         const notes = {
             text: item.value,
-            id: '1'
+            id: '1',
+            date: currentDate()
         }
         itemsArray.push(notes)
+        
     }
  
     localStorage.setItem('items', JSON.stringify(itemsArray))
     displayTodos()
     item.value = ''
+}
+function currentDate() {
+    const timeElapsed = Date.now()
+    const today = new Date(timeElapsed)
+    return today.toDateString()
 }
 
 // display todos
@@ -44,7 +51,7 @@ function displayTodos() {
     displayItems.innerHTML = ''
     itemsArray.map((item) => {
         return(displayItems.innerHTML += `
-        <div class="item">
+        <div class="item"><div class="date">${item.date}</div>
         <div class="input-controller">
             <textarea disabled>${item.text}</textarea>
             <div class="edit-controller">
@@ -167,6 +174,12 @@ function displayDate() {
     dateSection.innerHTML = `
     ${date[1]} ${date[2]}, ${date[3]}
     `
+}
+
+function showDate() {
+    let date = new Date()
+    date = date.toString().split(" ")
+    console.log(date)
 }
 
 init()
