@@ -34,7 +34,6 @@ function createItem(item) {
         itemsArray.push(notes)
     }
  
-    // console.log(itemsArray)
     localStorage.setItem('items', JSON.stringify(itemsArray))
     displayTodos()
     item.value = ''
@@ -70,6 +69,7 @@ function displayTodos() {
     activateDeleteBtn()
     activateEditListeners()
     activateSaveBtn()
+    toggleWeight()
 }
 
 sortBtn.addEventListener('click', sortItems)
@@ -77,12 +77,11 @@ sortBtn.addEventListener('click', sortItems)
 function sortItems(e){
     e.preventDefault()
     itemsArray.sort((a, b) => parseFloat(b.id) - parseFloat(a.id))
-    // console.log(itemsArray)
     localStorage.setItem('items', JSON.stringify(itemsArray))
     displayTodos()
 }
 
-// Radio Btns. buttons got value of radio options. items allowed forEach to run. Found index or array and set id equal to button value
+// Radio Btns. buttons got value of radio options. items allowed forEach to run. Found index or array and set id equal to button value. Called with onClick when buttons created
 function radioBtns(){
     const buttons = document.querySelector('[name="priority"]:checked').value
     let items = document.querySelectorAll('.item')
@@ -97,20 +96,18 @@ function radioBtns(){
 }
 
 
-
+// Toggles Low, Med, High priority btns. Needs to be called in displayTodos() function to run on page load to bind event listeners to buttons. Otherwise radio buttons have to be clicked twice to work. (First click binds event listener, second click would then fire function)
 function toggleWeight(){
     const radios = document.querySelectorAll('input[type="radio"]')
     const labels = document.querySelectorAll('label') 
     
     radios.forEach((lb, i) => {
         lb.addEventListener('click', () => {
-            console.log(labels[i].innerHTML)
             labels.forEach( lb => lb.classList.remove('label-weight'))
             labels[i].classList.add('label-weight')
         })
     })
 }
-
 
 
 // delete items
@@ -141,7 +138,6 @@ function activateEditListeners(){
             inputs[i].disabled = false
             saveBtn[i].style.display = 'flex'
             texttt[i].style.backgroundColor = '#fff'
-            console.log(itemsArray[i].id)
         })
     })
 
@@ -163,7 +159,6 @@ function updateItem(text, i){
     itemsArray[i].text = text
     localStorage.setItem('items', JSON.stringify(itemsArray))
     init()
-    // console.log(itemsArray)
 }
 
 function displayDate() {
@@ -180,14 +175,4 @@ function init() {
     displayTodos()
     displayDate()
     itemsArray.forEach(displayTodos)
-    toggleWeight()
-    // console.log("Loaded array" , itemsArray)
 }
-
-
-
-
-
-
-
-// ADD Clear notes button
