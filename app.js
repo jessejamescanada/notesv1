@@ -86,15 +86,31 @@ function sortItems(e){
 function radioBtns(){
     const buttons = document.querySelector('[name="priority"]:checked').value
     let items = document.querySelectorAll('.item')
-   
+
     items.forEach((it, i) => {
         it.addEventListener('click', () => {
             itemsArray[i].id = buttons
             localStorage.setItem('items', JSON.stringify(itemsArray))
+            toggleWeight()
         })
-        // console.log(itemsArray) 
     })
 }
+
+
+
+function toggleWeight(){
+    const radios = document.querySelectorAll('input[type="radio"]')
+    const labels = document.querySelectorAll('label') 
+    
+    radios.forEach((lb, i) => {
+        lb.addEventListener('click', () => {
+            console.log(labels[i].innerHTML)
+            labels.forEach( lb => lb.classList.remove('label-weight'))
+            labels[i].classList.add('label-weight')
+        })
+    })
+}
+
 
 
 // delete items
@@ -164,6 +180,7 @@ function init() {
     displayTodos()
     displayDate()
     itemsArray.forEach(displayTodos)
+    toggleWeight()
     // console.log("Loaded array" , itemsArray)
 }
 
